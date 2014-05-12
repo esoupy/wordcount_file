@@ -7,7 +7,7 @@ Installation
 ------------
 Run this to install
 
-.. code-block:: python
+.. code-block::
     pip install wordcount_file
 
 
@@ -15,7 +15,7 @@ Usage
 -----
 Create a WordCount object:
 
-.. code-block:: python
+.. code-block::
     >> import wordcount_file
     >> wc = wordcount_file.WordCount('file_to_count.txt')
 
