@@ -59,6 +59,7 @@ class WordCount:
         from collections import OrderedDict
 
         self.words = {}
+        self.counts = {}
         self.textfile = textfile
         self.word_count = 0
         SEPARATORS = [' ',';',':','=',',','(',')','{','}','[',']','|','<','>']
@@ -88,7 +89,7 @@ class WordCount:
         self.all_words = len(self.words.keys())
 
     def __repr__(self):
-        return "{ 'textfile': '%s', 'totalwords': %s }" % (self.textfile, self.totalwords)
+        return "{ 'textfile': '%s', 'word_count': %s }" % (self.textfile, self.word_count)
 
     def show_topwords(self, num=5):
         """
