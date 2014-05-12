@@ -42,6 +42,14 @@ def count_words(word_list, word_dict={}, case_sensitive=False):
 class WordCount:
     """
     Count the words in an ascii text file
+    Words separated by SEPARATORS are counted
+        SEPARATORS = [' ',';',':','=',',','(',')','{','}','[',']','|','<','>']
+
+    self.words      = Dictionary of words and each count
+    self.counts     = Dictionary of counts with a list of each words
+    self.textfile   = File processed
+    self.all_words  = Total number of counted words
+    self.word_count = Total number of all words in file
     """
 
     def __init__(self, textfile, case_sensitive=False):
@@ -51,8 +59,8 @@ class WordCount:
         from collections import OrderedDict
 
         self.words = {}
-        self.counts = {}
         self.textfile = textfile
+        self.word_count = 0
         SEPARATORS = [' ',';',':','=',',','(',')','{','}','[',']','|','<','>']
         with open(textfile, 'r') as f:
             for line in f:
@@ -65,6 +73,7 @@ class WordCount:
                 #_words_in_line = line.split(' ')
 
                 if _words_in_line:
+                    self.word_count += len(_words_in_line)
                     self.words = count_words(_words_in_line, self.words, case_sensitive)
 
         # create counts dictionary for faster count sorting #
@@ -76,7 +85,7 @@ class WordCount:
                 self.counts[count] = [ _word ]
         self.counts = OrderedDict(sorted(self.counts.items(), reverse=True))
 
-        self.totalwords = len(self.words.keys())
+        self.all_words = len(self.words.keys())
 
     def __repr__(self):
         return "{ 'textfile': '%s', 'totalwords': %s }" % (self.textfile, self.totalwords)
